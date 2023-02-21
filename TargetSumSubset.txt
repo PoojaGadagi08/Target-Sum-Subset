@@ -1,0 +1,26 @@
+import java.util.ArrayList;
+
+public class TargetSumSubset {
+    public static void main(String[] args) {
+        int arr[]={1,2,3};
+        int target=5;
+        solution(arr,0,target,new ArrayList<>());
+    }
+    public static void solution(int arr[],int i,int target,ArrayList<Integer> ans){
+
+        if(target<0)
+            return;
+        if(i==arr.length){
+            if(target==0)                 //TC=O(2^n)    SC=O(n)
+            System.out.println(ans);
+            return;
+        }
+        //select ith ele
+        ans.add(arr[i]);
+        solution(arr,i+1,target-arr[i],ans);
+        ans.remove(ans.size()-1);
+        solution(arr,i+1,target,ans);
+
+    }
+
+}
